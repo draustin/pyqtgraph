@@ -2027,7 +2027,9 @@ def isosurface(data, level):
             for k in [0,1]:
                 fields[i,j,k] = mask[slices[i], slices[j], slices[k]]
                 vertIndex = i - 2*j*i + 3*j + 4*k  ## this is just to match Bourk's vertex numbering scheme
-                index += fields[i,j,k] * 2**vertIndex
+                # Dane 5/12/2015
+                # index += fields[i,j,k] * 2**vertIndex
+                index += (fields[i,j,k] * 2**vertIndex).astype(np.ubyte)
     
     ### Generate table of edges that have been cut
     cutEdges = np.zeros([x+1 for x in index.shape]+[3], dtype=np.uint32)
@@ -2096,7 +2098,9 @@ def isosurface(data, level):
         ### expensive:
         verts = faceShiftTables[i][cellInds]
         #profiler()
-        verts[...,:3] += cells[:,np.newaxis,np.newaxis,:]  ## we now have indexes into cutEdges
+        #Dane 5/12/2015
+        #verts[...,:3] += cells[:,np.newaxis,np.newaxis,:]
+        verts[...,:3] += cells[:,np.newaxis,np.newaxis,:].astype(np.uint16)  ## we now have indexes into cutEdges
         verts = verts.reshape((verts.shape[0]*i,)+verts.shape[2:])
         #profiler()
         
