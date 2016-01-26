@@ -189,7 +189,8 @@ def _generateItemSvg(item, nodes=None, root=None):
         if USE_PYSIDE:
             xmlStr = str(arr)
         else:
-            xmlStr = bytes(arr).decode('utf-8')
+            # Dane: removing the decode makes it export greek letters to SVG OK
+            xmlStr = bytes(arr)#.decode('utf-8')
         doc = xml.parseString(xmlStr)
         
     try:
