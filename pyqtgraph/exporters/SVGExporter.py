@@ -360,16 +360,16 @@ def correctCoordinates(node, defs, item):
                 #ch.setAttribute('font-size', str(fs))
                 
                 ## Correct some font information
-                # families = ch.getAttribute('font-family').split(',')
-                # if len(families) == 1:
-                #     font = QtGui.QFont(families[0].strip('" '))
-                #     if font.style() == font.SansSerif:
-                #         families.append('sans-serif')
-                #     elif font.style() == font.Serif:
-                #         families.append('serif')
-                #     elif font.style() == font.Courier:
-                #         families.append('monospace')
-                #     ch.setAttribute('font-family', ', '.join([f if ' ' not in f else '"%s"'%f for f in families]))
+                families = ch.getAttribute('font-family').split(',')
+                if len(families) == 1:
+                    font = QtGui.QFont(families[0].strip('" '))
+                    if font.style() == font.SansSerif:
+                        families.append('sans-serif')
+                    elif font.style() == font.Serif:
+                        families.append('serif')
+                    elif font.style() == font.Courier:
+                        families.append('monospace')
+                    ch.setAttribute('font-family', ', '.join([f if ' ' not in f else '"%s"'%f for f in families]))
                 
             ## correct line widths if needed
             if removeTransform and ch.getAttribute('vector-effect') != 'non-scaling-stroke':

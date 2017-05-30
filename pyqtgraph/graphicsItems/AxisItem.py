@@ -335,6 +335,7 @@ class AxisItem(GraphicsWidget):
                 h += self.style['tickTextOffset'][1] if self.style['showValues'] else 0
                 h += max(0, self.style['tickLength'])
                 if self.label.isVisible():
+                    #pass
                     h += self.label.boundingRect().height() * 0.8
             else:
                 h = self.fixedHeight
